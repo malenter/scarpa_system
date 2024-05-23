@@ -1,0 +1,90 @@
+<!-- templates/new-email.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización del Estado del Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #227aff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            color: #ffffff;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h1 {
+            color: #333333;
+        }
+        .content p {
+            color: #555555;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #227aff;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #227aff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .email-container {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Actualización del Estado de la factura</h2>
+        </div>
+        <div class="content">
+            <h1>Hola, {{ nombre_cliente }}</h1>
+            <p>Nos complace informarte tu orden actual .</p>
+            <p><strong>orden de pedido:</strong> {{ factura.nombre }}</p>
+            <p><strong>Fecha del Pedido:</strong> {{ factura.fecha_pedido }}</p>
+            <p><strong>Total:</strong> {{ factura.total }}</p>
+            <p><strong>Detalles del Pedido:</strong></p>
+            <ul>
+                {% for pedido in pedidos %}
+                <li>{{ pedido.zapato.nombre }} - Cantidad: {{ pedido.canitdad }} - Estado: {{ pedido.estado }}</li>
+                {% endfor %}
+            </ul>
+            <p>Puedes ver los detalles de tu pedido y el estado actualizado en cualquier momento accediendo a tu cuenta en nuestro sitio web.</p>
+        </div>
+        <div class="footer">
+            <p>Gracias por comprar con nosotros.</p>
+            <p>Nombre de tu Empresa</p>
+        </div>
+    </div>
+</body>
+</html>

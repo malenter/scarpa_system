@@ -1,0 +1,11 @@
+.estado-no_iniciado {
+    color: yellow;
+}
+
+.estado-proceso {
+    color: orange;
+}
+
+.estado-termiando {
+    color: green;
+}

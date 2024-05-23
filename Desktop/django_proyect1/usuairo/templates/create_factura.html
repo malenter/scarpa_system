@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block content  %}
+<div class='container'>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-end">
+    <div class="container-fluid justify-content-end">
+      <!-- Botón para mostrar el menú en dispositivos móviles -->
+      <button class="navbar-toggler" type="button" style="background-color: whitesmoke; border-color: black; color: red;" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbar" style="height: 150spx; width: 200px;">
+        <div class="container">
+          <form class="d-flex " role="search"  action="{% url 'search_factura' %}" method="GET"  style="width: 300px; height: 60px;">
+            <input class="form-control me-2 border border-dark " style="border: black; width: 150px; height: 50px;" type="search" placeholder="Buscar  " aria-label="Search" name="buscar">
+            <button class="btn btn-outline-success"  style="height: 50px;" type="submit">Search</button>
+          </form>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </div>
+</div>
+<div class="row justify-content-between">
+    <div class="col-md-4 offset-md-4 mt-5 justify-content-between">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h2 class="text-white text-capitalize ps-3 ">Generar Orden de Pedido</h2>
+          </div>
+        </div>
+      <form action="/facturas/create/"   method="POST" class="card card-body" >
+        {{ERROR}}
+
+         {% csrf_token %}
+        {{form.as_p}}
+  
+       <button class="btn btn-primary"> save </button>
+  
+      </form>
+    </div>
+  </div>
+
+  
+
+{% endblock  %}

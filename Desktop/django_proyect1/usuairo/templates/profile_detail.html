@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h3 class="text-white text-capitalize ps-3">Perfil</h3>
+            </div>
+        </div>
+          <div class="card">
+        <div class="card-body">
+            {% if user_profile.logo %}
+            <div class="mb-3 text-center">
+                <img src="{{ user_profile.logo.url }}" alt="Logo de la Empresa" class="img-fluid rounded-circle" style="max-width: 150px;">
+            </div>
+            {% endif %}
+            <div class="mb-3">
+                <h4>Nombre de la Empresa:</h4>
+                <p>{{ user_profile.nombre_empresa }}</p>
+            </div>
+            <div class="mb-3">
+                <h4>Correo:</h4>
+                <p>{{ user_profile.correo }}</p>
+            </div>
+            <div class="mb-3">
+                <h4>Teléfono:</h4>
+                <p>{{ user_profile.telefono }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

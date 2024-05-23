@@ -1,0 +1,135 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="col-lg-12 text-center mb-4">
+        <div class="card card-plain">
+            <div class="card-body p-3">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h3 class="text-white text-capitalize ps-3">Informacion general</h3>
+                    </div>
+                </div> 
+            </div>
+           
+            </div>
+    </div>
+    
+    <div class="row">
+        {% for venta in facturas %}
+        <div class="col-lg-5 col-sm-5 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">attach_money</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Ventas en {{ venta.Year }}</p>
+                        <h4 class="mb-0">Total: {{ venta.total_ventas }} $</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3"></div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="col-lg-5 col-sm-5 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">list_alt</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Total de Facturas No Pagadas</p>
+                        <h4 class="mb-0">{{ total_facturas_no_pagadas }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3"></div>
+            </div>
+        </div>
+        
+        <div class="col-lg-5 col-sm-5 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">assignment</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Pedidos No Iniciados</p>
+                        <h4 class="mb-0">{{ pedidos_no_iniciados }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3"></div>
+            </div>
+        </div>
+        
+        <div class="col-lg-5 col-sm-5 mb-3">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-xl mt-n4 position-absolute">
+                        <i class="material-icons opacity-10">hourglass_top</i>
+                    </div>
+                    <div class="text-end pt-1">
+                        <p class="text-sm mb-0 text-capitalize">Pedidos en Proceso</p>
+                        <h4 class="mb-0">{{ pedidos_en_proceso }}</h4>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="container main-container mt-5">
+    <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h3 class="text-white text-capitalize ps-3">Ordenes  y Pedidos</h3>
+            </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Orden de pedido</th>
+                            <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Pedido</th>
+                            <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Estado del Pedido</th>
+                            <th class="text-uppercase text-secondary text-xl font-weight-bolder opacity-7">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for factura in facturas_mas %}
+                        {% if factura.pago == False %}
+                            {% for pedido in factura.pedidos.all %}
+                                    <tr>
+                                        {% if forloop.first %}
+                                            <td rowspan="{{ factura.pedidos.count }}">{{ factura.nombre }}</td>
+                                        {% endif %}
+                                        <td>{{ pedido }}</td>
+                                        <td class="align-middle text-center">
+                                            {% if pedido.estado == 'terminado' %}
+                                                <span class="badge text-lg bg-success">terminado</span>
+                                            {% elif pedido.estado == 'en proceso' %}
+                                                <span class="badge text-lg bg-warning">en proceso</span>
+                                            {% else %}
+                                                <span class="badge text-lg bg-danger">no iniciado</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="align-middle text-lg text-center">{{ pedido.valor }}</td>
+                                    </tr>
+                            {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

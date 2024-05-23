@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<main class="container mt-5">
+  <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h2 class="text-white text-capitalize ps-3">Encuestas Realizadas</h2>
+          </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                  <thead>
+                      <tr>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">Cliente</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">¿Cómo calificaría el servicio recibido?</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">¿Cómo calificaría la atención al cliente?</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">¿Está satisfecho con la calidad del producto?</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">¿Cómo evaluaría el tiempo de espera?</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">¿Recomendaría nuestro servicio a otros?</th>
+                          <th class="text-uppercase text-secondary text-ls font-weight-bolder opacity-7">Recomendaciones adicionales</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% if encuesta %}
+                      {% for encuestas in encuesta %}
+                      <tr>
+                          <td>
+                              <p class="fw-bold mb-1">{{ encuestas.cliente.nombre }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_1 }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_2 }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_3 }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_4 }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_5 }}</p>
+                          </td>
+                          <td>
+                              <p>{{ encuestas.pregunta_6 }}</p>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                    {% else %}
+                      <tr>
+                        <td colspan="7" class="text-center">No se encontraron encuestas.</td>
+                      </tr>
+                    {% endif %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</main>
+{% endblock %}
