@@ -97,7 +97,7 @@ class EncuestaForm(forms.ModelForm):
             'pregunta_3': '1: Muy Malo, 5: Excelente',
             'pregunta_4': '1: Muy Malo, 5: Excelente',
             'pregunta_5': '1: Definitivamente no, 5: Definitivamente sí',
-            'pregunta_6': 'recomendaciones adicionales que quiera hacer  a nuestro servicio ',
+            'pregunta_6': 'recomendaciones adicionales que quisiera ver  en nuestro servicio ',
 
         }
 
