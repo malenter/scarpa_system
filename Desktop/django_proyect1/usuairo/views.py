@@ -533,8 +533,8 @@ def busqueda_clientes(request):
         clientes = cliente.objects.filter(user=request.user)
         if busqueda:
             clientes = clientes.filter(Q(nombre__icontains=busqueda) |
-                                       Q(ciudad__icontains=busqueda) |
-                                       Q(departamento__icontains=busqueda) |
+                                       Q(ciudad__name__icontains=busqueda) |
+                                       Q(departamento__name__icontains=busqueda) |
                                        Q(local__icontains=busqueda)).distinct()
 
         else:

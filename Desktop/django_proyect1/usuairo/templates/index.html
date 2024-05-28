@@ -51,18 +51,20 @@ Home Scrapa
     
     <nav class="navbar navbar-expand-lg bg-gradient-dark navbar-dark fixed-start">
       <div class="container">
-         
-              <h2 
-               style="color: aliceblue;"  class="ms-1 font-weight-bold">SCRAPA</h2>
+               <div>              <h2 
+                style="color: aliceblue;"  class="ms-1 font-weight-bold">SCRAPA</h2></div>
+<div> <button class="navbar-toggler" type="button" style="background-color: whitesmoke; border-color: black; color: red;" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i>
+            </button></div>
+              
                {% if user.is_authenticated %}
                <div class="d-flex align-items-center ms-auto">
+               
                    {% if user.userprofile.logo %}
                    <img src="{{ user.userprofile.logo.url }}" alt="Logo" class="user-logo" style="width: 80px; height: 80px; object-fit: contain; margin-right: 10px;">
                    {% endif %}
-                   <button class="navbar-toggler" type="button" style="background-color: whitesmoke; border-color: black; color: red;" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                       <span class="navbar-toggler-icon"></span>
-                       <i class="fas fa-bars"></i>
-                   </button>
+
                </div>
            {% endif %}
           
@@ -181,8 +183,6 @@ Home Scrapa
 <script src="{% static 'assets/js/core/bootstrap.min.js' %}" ></script>
 <script src="{% static 'assets/js/plugins/perfect-scrollbar.min.js' %}" ></script>
 <script src="{% static 'assets/js/plugins/smooth-scrollbar.min.js' %}" ></script>
-<script src="{% static 'assets/js/dashboard-free.css.map' %}" ></script>
-<script src="{% static 'assets/js/_site_dashboard_free/assets/js/dashboard-free.js.map' %}" ></script>
 <script>
   var win = navigator.platform.indexOf('Win') > -1;
   if (win && document.querySelector('#sidenav-scrollbar')) {
